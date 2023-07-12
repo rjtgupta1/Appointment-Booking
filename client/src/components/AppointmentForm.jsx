@@ -1,68 +1,81 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import Calendar from "./Calendar";
-import Gender from "./Gender";
+import { Avatar, Button, Grid, Paper, TextField } from "@mui/material";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 
-const AppointmentForm = () => {
-  const pincode = [
-    {
-      label: 277503,
-    },
-    {
-      label: 201301,
-    },
-    {
-      label: 206021,
-    },
-    {
-      label: 226013,
-    },
-  ];
+const NewForm = () => {
+  const paperStyle = {
+    padding: 20,
+    height: "450px",
+    width: "300px",
+    margin: "auto",
+  };
+  const today = new Date()
+  let yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1;
+  let dd = today.getDate();
+  console.log(mm)
+  if(dd<10) dd = '0' + dd
+  if(mm<10) mm = '0' + mm
+  let formattedDate = dd + '/' + mm + '/' + yyyy;
   return (
     <>
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": {
-            m: 1,
-            width: "30ch",
-            height: "7ch",
-            display: "flex",
-            margin: "auto",
-          },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField id="outlined-basic" label="Name" variant="outlined" />
-        <Gender />
-        <TextField id="outlined-basic" label="Mobile No" variant="outlined" />
-        <TextField id="outlined-basic" label="Address" variant="outlined" />
-        <TextField id="outlined-select" select label="Pincode">
-          {pincode.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <Stack direction="row" spacing={20}>
-          <Calendar />
-        </Stack>
-        <Button
-          sx={{position: 'absolute',left:"565px",top:"500px", textTransform: "none" }}
-          variant="contained"
-          type="submit"
-          href="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
-        >
-          Make Payment
-        </Button>
-      </Box>
+      <Grid>
+        <Paper elevation={12} style={paperStyle}>
+          <Grid align="center">
+            <Avatar style={{ backgroundColor: "#1976d2" }}>
+              <MedicalServicesIcon />
+            </Avatar>
+            <h2>Book Appointment</h2>
+            <TextField
+              id="standard-basic"
+              name="name"
+              label="Name"
+              placeholder="Enter Full Name"
+              variant="standard"
+              fullWidth
+              required
+            />
+            <TextField
+              id="standard-basic"
+              name="mobile"
+              label="Mobile No."
+              placeholder="Enter Mobile Number"
+              variant="standard"
+              fullWidth
+              required
+            />
+            <TextField
+              id="standard-basic"
+              name="address"
+              label="Address"
+              placeholder="Enter Full Address"
+              variant="standard"
+              fullWidth
+              required
+            />
+            <TextField
+              id="standard-basic"
+              name="pincode"
+              label="Pin Code"
+              placeholder="eg: 221001"
+              variant="standard"
+              fullWidth
+              required
+            />
+            <TextField
+              id="standard-basic"
+              name="date"
+              label={formattedDate}
+              variant="standard"
+              fullWidth
+              disabled
+            />
+            <Button type="submit" variant="contained" style={{top:"50px", textTransform: "none"}}>Make Payment</Button>            
+          </Grid>
+        </Paper>
+      </Grid>
     </>
   );
 };
 
-export default AppointmentForm;
+export default NewForm;
