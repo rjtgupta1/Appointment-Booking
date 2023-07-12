@@ -41,35 +41,26 @@ const AppointmentForm = () => {
         <TextField id="outlined-basic" label="Name" variant="outlined" />
         <Gender />
         <TextField id="outlined-basic" label="Mobile No" variant="outlined" />
-        <TextField
-          id="outlined-basic"
-          label="Email Address"
-          variant="outlined"
-        />
         <TextField id="outlined-basic" label="Address" variant="outlined" />
-        <TextField
-          id="outlined-select"
-          select
-          label="Pincode"
-        >
+        <TextField id="outlined-select" select label="Pincode">
           {pincode.map((option) => (
             <MenuItem key={option.label} value={option.label}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
-      </Box>
-      <Calendar />
-      <Stack direction="row" spacing={20}>
+        <Stack direction="row" spacing={20}>
+          <Calendar />
+        </Stack>
         <Button
-          sx={{ margin: "30px auto",textTransform: 'none' }}
+          sx={{position: 'absolute',left:"565px",top:"500px", textTransform: "none" }}
           variant="contained"
           type="submit"
           href="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
         >
           Make Payment
         </Button>
-      </Stack>
+      </Box>
     </>
   );
 };
