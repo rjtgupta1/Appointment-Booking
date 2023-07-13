@@ -22,14 +22,16 @@ const initialValues = {
 };
 
 const AppointmentForm = () => {
-  const { values, errors, touched, handleChange, handleSubmit } = useFormik({
+
+
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues, // initialValues:initialValues
     validationSchema: Model,
     onSubmit: (values) => {
       console.log(values);
     },
   });
-  console.log(errors);
   const paperStyle = {
     padding: 20,
     height: "450px",
@@ -39,7 +41,42 @@ const AppointmentForm = () => {
 
   return (
     <>
-    <ErrorAlert />
+    {
+      touched.name && errors.name
+      ?
+      (
+          <ErrorAlert props={errors.name} />
+      )
+      :
+      null
+    }
+    {
+      touched.mobile && errors.mobile
+      ?
+      (
+          <ErrorAlert props={errors.mobile} />
+      )
+      :
+      null
+    }
+    {
+      touched.address && errors.address
+      ?
+      (
+          <ErrorAlert props={errors.address} />
+      )
+      :
+      null
+    }
+    {
+      touched.pincode && errors.pincode
+      ?
+      (
+          <ErrorAlert props={errors.pincode} />
+      )
+      :
+      null
+    }    
       <Grid>
         <Paper elevation={12} style={paperStyle}>
           <Grid align="center">
@@ -59,8 +96,8 @@ const AppointmentForm = () => {
                     fullWidth
                     value={values.name}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
-                  {/* <p>{ touched ? errors.name : null }</p> */}
                   <TextField
                     id="standard-basic"
                     name="mobile"
@@ -70,6 +107,7 @@ const AppointmentForm = () => {
                     fullWidth
                     value={values.mobile}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <TextField
                     id="standard-basic"
@@ -80,8 +118,8 @@ const AppointmentForm = () => {
                     fullWidth
                     value={values.address}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
-                  {touched.address ? <p>{errors.address}</p> : null}
                   <TextField
                     id="standard-basic"
                     name="pincode"
@@ -91,13 +129,14 @@ const AppointmentForm = () => {
                     fullWidth
                     value={values.pincode}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
-                  {touched.pincode ? <p>{errors.pincode}</p> : null}
                   <TextField
                     id="standard-basic"
                     name="date"
                     label={formattedDate}
                     variant="standard"
+                    onBlur={handleBlur}
                     fullWidth
                     disabled
                   />
