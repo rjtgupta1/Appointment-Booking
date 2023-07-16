@@ -4,6 +4,8 @@ import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import { Formik, Form, useFormik } from "formik";
 import Model from "../model/model";
 import ErrorAlert from "./ErrorAlert";
+import handleMakePayment from "../helpers/handleMakePayment";
+
 
 const today = new Date();
 let yyyy = today.getFullYear();
@@ -23,13 +25,12 @@ const initialValues = {
 
 const AppointmentForm = () => {
 
-
-
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues, // initialValues:initialValues
     validationSchema: Model,
     onSubmit: (values) => {
       console.log(values);
+      handleMakePayment();
     },
   });
   const paperStyle = {

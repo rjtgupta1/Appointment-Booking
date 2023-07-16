@@ -8,7 +8,7 @@ const instance = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-const createOrder = () =>{
+const createOrder = (req,res) =>{
   let options = {
     amount: 100000,  // amount in the smallest currency unit
     currency: "INR",
@@ -16,9 +16,9 @@ const createOrder = () =>{
   };
   instance.orders.create(options, function(err, order) {
     if(err){
-      console.log('Order creation failed ',err);
+      return res.status(500).json({message:'Server error'})
     }else{
-      console.log('Order Details :',order);
+      return res.status(200).json({message:'Order Created',data:order})
     }
   });
 }
