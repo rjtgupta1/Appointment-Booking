@@ -1,19 +1,27 @@
-const handleOpenRazorpay = async (order) =>{
+import axios from "axios";
+
+const handleOpenRazorpay = (order,formData) =>{
+    console.log("Open Razorpay ",formData);
     let  options = {
         "key": "rzp_test_Gx0GvcqCgV0D0g",
-        "amount": "100000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "amount": Number(order.amount), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
         "name": "Appointment Booking",
         "image": "https://cdn1.vectorstock.com/i/1000x1000/07/65/avatar-money-bill-coin-vector-10810765.jpg",
         "order_id": order.id, 
         "handler": function (response){
-            alert('Payment Successful 🎉')
+            alert('Payment Initiated')
             console.log(response);
+            axios({
+                method:'post',
+                url:'/verifyPayment',
+                data:{razorpay : response,user : formData}
+            })   //  Sending paymentID,orderID & signature to the server
         },
         "prefill": {
-            "name": "Rajat Gupta",
-            "email": "imrjtgupta@gmail.com",
-            "contact": "9565679102"
+            "name": formData.name,
+            "email": formData.email,
+            "contact": formData.mobile
         },
         "notes": {
             "address": "Razorpay Corporate Office"
@@ -24,13 +32,8 @@ const handleOpenRazorpay = async (order) =>{
     };
     let rzp = new window.Razorpay(options);
     rzp.on('payment.failed', function (response){
-            alert(response.error.code);
             alert(response.error.description);
-            alert(response.error.source);
-            alert(response.error.step);
-            alert(response.error.reason);
-            alert(response.error.metadata.order_id);
-            alert(response.error.metadata.payment_id);
+            console.log(response)
     });
       rzp.open();
     }

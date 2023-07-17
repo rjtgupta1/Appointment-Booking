@@ -18,8 +18,8 @@ let formattedDate = dd + "/" + mm + "/" + yyyy;
 const initialValues = {
   name: "",
   mobile: "",
+  email: "",
   address: "",
-  pincode: "",
   date: formattedDate,
 };
 
@@ -30,7 +30,7 @@ const AppointmentForm = () => {
     validationSchema: Model,
     onSubmit: (values) => {
       console.log(values);
-      handleMakePayment();
+      handleMakePayment(values);
     },
   });
   const paperStyle = {
@@ -61,19 +61,19 @@ const AppointmentForm = () => {
       null
     }
     {
-      touched.address && errors.address
+      touched.email && errors.email
       ?
       (
-          <ErrorAlert props={errors.address} />
+          <ErrorAlert props={errors.email} />
       )
       :
       null
     }
     {
-      touched.pincode && errors.pincode
+      touched.address && errors.address
       ?
       (
-          <ErrorAlert props={errors.pincode} />
+          <ErrorAlert props={errors.address} />
       )
       :
       null
@@ -112,23 +112,23 @@ const AppointmentForm = () => {
                   />
                   <TextField
                     id="standard-basic"
-                    name="address"
-                    label="Address"
-                    placeholder="Enter Full Address"
+                    name="email"
+                    label="Email"
+                    placeholder="Enter your email"
                     variant="standard"
                     fullWidth
-                    value={values.address}
+                    value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   <TextField
                     id="standard-basic"
-                    name="pincode"
-                    label="Pin Code"
+                    name="address"
+                    label="Address"
                     placeholder="eg: 221001"
                     variant="standard"
                     fullWidth
-                    value={values.pincode}
+                    value={values.address}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
