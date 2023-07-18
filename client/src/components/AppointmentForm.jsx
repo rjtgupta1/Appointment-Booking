@@ -29,7 +29,6 @@ const AppointmentForm = () => {
     initialValues, // initialValues:initialValues
     validationSchema: Model,
     onSubmit: (values) => {
-      console.log(values);
       handleMakePayment(values);
     },
   });
