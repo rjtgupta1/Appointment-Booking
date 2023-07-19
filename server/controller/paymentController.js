@@ -14,8 +14,7 @@ const instance = new Razorpay({
 const createOrder = (req, res) => {
   let options = {
     amount: 1000 * 100, // amount in the smallest currency unit
-    currency: "INR",
-    receipt: "Order_receipt_id_11",
+    currency: "INR"
   };
   instance.orders.create(options, function (err, order) {
     if (err) {
@@ -32,8 +31,9 @@ const verifyPayment = (req, res) => {
   // generating signature by hashing the payment credentials
   let generated_signature = crypto.createHmac('sha256',KEY_SECRET).update(body_response.toString()).digest('hex')
   if(generated_signature===req.body.razorpay.razorpay_signature){
-    res.status(200).json({message:'Payment Successful'})
-    console.log('Payment Successful')
+    // res.status(200).json({message:'Payment Successful'})
+    res.redirect('http://localhost:3000/paymentsuccess')
+    // ! getting error while redirecting. GET http://localhost:3000/paymentsuccess 404 (Not Found)
   }else{
     res.status(500).json({message:'Payment failed'})
     console.log('Payment Failed');

@@ -14,7 +14,7 @@ const Navbar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Book Appointment
           </Typography>
-        <Button variant="contained" color="primary"  sx={{color:'#fff',fontFamily:'Arial',textTransform: 'none'}}>Check Status</Button>
+        <Button href='/check-status' variant="contained" color="primary"  sx={{color:'#fff',fontFamily:'Arial',textTransform: 'none'}}>Check Status</Button>
         </Toolbar>
       </AppBar>
     </Box>

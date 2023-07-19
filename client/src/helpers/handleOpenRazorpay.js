@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const handleOpenRazorpay = (order,formData) =>{
-    console.log("Open Razorpay ",formData);
+    console.log("Opening Razorpay...");
     let  options = {
         "key": process.env.REACT_APP_KEY_ID,
         "amount": Number(order.amount), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -12,7 +12,7 @@ const handleOpenRazorpay = (order,formData) =>{
         "handler": function (response){
             axios({
                 method:'post',
-                url:'/verifyPayment',
+                url:`${process.env.REACT_APP_API_URL}/verifyPayment`,
                 data:{razorpay : response,user : formData}
             })   //  Sending paymentID,orderID,signature & form data to the server
         },
