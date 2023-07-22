@@ -15,6 +15,11 @@ const handleOpenRazorpay = (order,formData) =>{
                 url:`${process.env.REACT_APP_API_URL}/verifyPayment`,
                 data:{razorpay : response,user : formData}
             })   //  Sending paymentID,orderID,signature & form data to the server
+            .then((response)=>{
+                if(response.data.message==='true'){
+                    window.location.replace(`http://localhost:3000/paymentsuccess/${response.data.paymentId}`);
+                }
+            })
         },
         "prefill": {
             "name": formData.name,

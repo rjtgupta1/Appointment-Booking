@@ -3,7 +3,21 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+
+const btnStyle = {
+  color:'#fff',
+  fontFamily:'Arial',
+  textDecoration: 'none',
+  borderTopRightRadius:'35%',
+  borderBottomLeftRadius:'35%',
+  background: '#1976f9',
+  height:'auto',
+  width:'auto',
+  textAlign:'center',
+  border: '2px solid #fff',
+  padding:'10px'
+}
 
 const Navbar = () => {
   return (
@@ -12,9 +26,9 @@ const Navbar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Book Appointment
+            <Link to={'/'} style={{textDecoration:'none',color:'#fff'}} >Book Appointment</Link>
           </Typography>
-        <Button href='/check-status' variant="contained" color="primary"  sx={{color:'#fff',fontFamily:'Arial',textTransform: 'none'}}>Check Status</Button>
+        <Link to={'/check-status'} style={btnStyle}>Check Status</Link>
         </Toolbar>
       </AppBar>
     </Box>

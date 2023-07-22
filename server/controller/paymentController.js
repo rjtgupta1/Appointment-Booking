@@ -31,9 +31,7 @@ const verifyPayment = (req, res) => {
   // generating signature by hashing the payment credentials
   let generated_signature = crypto.createHmac('sha256',KEY_SECRET).update(body_response.toString()).digest('hex')
   if(generated_signature===req.body.razorpay.razorpay_signature){
-    // res.status(200).json({message:'Payment Successful'})
-    res.redirect('http://localhost:3000/paymentsuccess')
-    // ! getting error while redirecting. GET http://localhost:3000/paymentsuccess 404 (Not Found)
+    res.status(200).json({message:'true',paymentId:req.body.razorpay.razorpay_payment_id})
   }else{
     res.status(500).json({message:'Payment failed'})
     console.log('Payment Failed');

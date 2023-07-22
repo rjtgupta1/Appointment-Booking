@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" Component={AppointmentForm}></Route>
           <Route path="/paymentsuccess" Component={Paymentsuccess}></Route>
+          <Route path="/paymentsuccess/:paymentId" Component={Paymentsuccess}></Route>
           <Route path="/check-status" Component={Checkstatus}></Route>
         </Routes>
       </Router>
