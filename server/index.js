@@ -3,6 +3,7 @@ import express from "express";
 import { createOrder, verifyPayment } from "./controller/paymentController.js";
 import cors from 'cors'
 import mongoose  from "mongoose";
+import fetchData from "./controller/fetchData.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -24,3 +25,4 @@ try {
 
 app.post("/order", createOrder);
 app.post("/verifyPayment",verifyPayment)
+app.post("/check-status",fetchData)
