@@ -9,7 +9,7 @@ const fetchData = async (req, res) => {
   if (data.length) {
     res.status(200).json(data);
   } else {
-    res.status(404).json({ message: "Data not found" });
+    res.status(200).json({message: "Data not found" });
   }
 };
 
