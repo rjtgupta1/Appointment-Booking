@@ -5,7 +5,8 @@
   "description": "\"Backend for Appointment-Booking\"",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "node index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
