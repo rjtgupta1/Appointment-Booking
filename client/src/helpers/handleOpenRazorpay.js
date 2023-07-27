@@ -35,7 +35,7 @@ const handleOpenRazorpay = (order,formData) =>{
     };
     let rzp = new window.Razorpay(options);
     rzp.on('payment.failed', function (response){
-            alert(response.error.description);
+        window.location.replace(`http://localhost:3000/paymentfailed/`);
     });
       rzp.open();
     }
